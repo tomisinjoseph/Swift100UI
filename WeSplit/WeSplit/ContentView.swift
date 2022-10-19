@@ -4,12 +4,11 @@
 //
 //  Created by Tomisin Joseph on 17/10/2022.
 //
-// Computed property that calculates the total
-
-// number of people:
-// index: 0 - 1 - 2 - 3 - 4 - 5
-// numbr: 2 - 3 - 4 - 5 - 6 - 7
-// range is 2 > 100, but counts from 0
+// property wrapper @FocusState - designed to handle input focus in UI
+// when text field is focused, amountIsFocused is true
+// toolbar() - specify toolbar items for a view
+// TootbarItemGroup - lets us place one or mor ebuttons in a specific location: attach a keyboard toolbar
+// Button sets amountIsFocused to false, so the keyboard is dismissed
 
 import SwiftUI
 
@@ -18,6 +17,7 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
+    @FocusState private var amountIsFocused: Bool
     
     let tipPercentages = [10, 15, 20, 25, 0]
     
@@ -38,6 +38,7 @@ struct ContentView: View {
                 Section {
                     TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                         .keyboardType(.decimalPad)
+                        .focused($amountIsFocused)
                     
                     Picker("Number of people", selection: $numberOfPeople) {
                         ForEach(2..<100) {
@@ -62,6 +63,15 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("WeSplit")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
+                    Button("Done") {
+                        amountIsFocused = false
+                    }
+                }
+            }
         }
     }
 }
