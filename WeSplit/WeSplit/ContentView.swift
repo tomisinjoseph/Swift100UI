@@ -4,11 +4,12 @@
 //
 //  Created by Tomisin Joseph on 17/10/2022.
 //
-// @State - automatically re-invoke the body property; it will reload your UI to reflect the changed state
-//  declarative user interface design - we say what we want rather than say how it should be done
-// segmented control - options in a horizontal list (small selection is best)
+// Computed property that calculates the total
 
-// can add views to the header and footer of a section
+// number of people:
+// index: 0 - 1 - 2 - 3 - 4 - 5
+// numbr: 2 - 3 - 4 - 5 - 6 - 7
+// range is 2 > 100, but counts from 0
 
 import SwiftUI
 
@@ -19,6 +20,17 @@ struct ContentView: View {
     @State private var tipPercentage = 20
     
     let tipPercentages = [10, 15, 20, 25, 0]
+    
+    var totalPerPerson: Double {
+        let peopleCount = Double(numberOfPeople + 2)
+        let tipSelection = Double(tipPercentage)
+        
+        let tipValue = checkAmount / 100 * tipSelection
+        let grandTotal = checkAmount + tipValue
+        let amountPerPerson = grandTotal / peopleCount
+        
+        return amountPerPerson
+    }
     
     var body: some View {
         NavigationView {
@@ -46,7 +58,7 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    Text(checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                 }
             }
             .navigationTitle("WeSplit")
