@@ -6,6 +6,9 @@
 //
 // @State - automatically re-invoke the body property; it will reload your UI to reflect the changed state
 //  declarative user interface design - we say what we want rather than say how it should be done
+// segmented control - options in a horizontal list (small selection is best)
+
+// can add views to the header and footer of a section
 
 import SwiftUI
 
@@ -29,6 +32,17 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
+                }
+                
+                Section {
+                    Picker("Tip percentage", selection: $tipPercentage) {
+                        ForEach(tipPercentages, id: \.self) {
+                            Text($0, format: .percent)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                } header: {
+                    Text("How much tip do you want to leave?")
                 }
                 
                 Section {
