@@ -10,6 +10,8 @@
 // TootbarItemGroup - lets us place one or mor ebuttons in a specific location: attach a keyboard toolbar
 // Button sets amountIsFocused to false, so the keyboard is dismissed
 
+// Whenever an @State property changes, Swift re-invokes our body property - forces all values inside the body to be re-evaluated, making sure they are updated for the changes.
+
 import SwiftUI
 
 struct ContentView: View {
@@ -30,6 +32,15 @@ struct ContentView: View {
         let amountPerPerson = grandTotal / peopleCount
         
         return amountPerPerson
+    }
+    
+    var checkTotal: Double {
+        let tipSelection = Double(tipPercentage)
+        
+        let tipValue = checkAmount / 100 * tipSelection
+        let grandTotal = checkAmount + tipValue
+        
+        return grandTotal
     }
     
     var body: some View {
@@ -59,7 +70,15 @@ struct ContentView: View {
                 }
                 
                 Section {
+                    Text(checkTotal, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                } header: {
+                    Text("Total amount for check")
+                }
+                
+                Section {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                } header: {
+                    Text("Amount per person")
                 }
             }
             .navigationTitle("WeSplit")
