@@ -11,10 +11,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack(alignment: .top) {
-            Text("bach text")
-            Text("front text").foregroundColor(.orange)
+        VStack {
+            HStack {
+                Text("1")
+                Text("2")
+                Text("3")
+            }
+            HStack(spacing: 20) {
+                Text("4")
+                Text("5")
+                Text("6")
+            }
+            HStack {
+                Text("7")
+                Text("8")
+                Text("9")
+            }
         }
+
     }
 }
 
