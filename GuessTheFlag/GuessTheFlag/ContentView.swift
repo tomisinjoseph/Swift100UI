@@ -4,20 +4,16 @@
 //
 //  Created by Tomisin Joseph on 19/10/2022.
 //
-// can use one or more Spacer() to push contents of a stack to one side - divides space equally if you have more than one
-// Text in one 'space'
+// Z stack draws content from top to bottom, back to front
+
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack() {
-            Spacer()
-            Text("First")
-            Text("Second")
-            Text("Third")
-            Spacer()
-            Spacer()
+        ZStack(alignment: .top) {
+            Text("bach text")
+            Text("front text").foregroundColor(.orange)
         }
     }
 }
