@@ -4,8 +4,8 @@
 //
 //  Created by Tomisin Joseph on 19/10/2022.
 //
-// background(.red) means Color.red in a ZStack
-// semantic colours describe purpose
+// background modifier also accepts materials
+// foregroundStyle deals with vibrancy effect - text stands out regardless of the background
 
 
 import SwiftUI
@@ -13,8 +13,15 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Color(red: 1, green: 0.8, blue: 0)
-            Text("Your content").foregroundColor(.secondary)
+            VStack(spacing: 0) {
+                Color.blue
+                Color.red
+            }
+            
+            Text("BOLD TEXT")
+                .foregroundStyle(.secondary)
+                .padding(50)
+                .background(.ultraThinMaterial)
         }
         .ignoresSafeArea()
     }
