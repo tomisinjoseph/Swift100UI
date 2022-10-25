@@ -4,31 +4,19 @@
 //
 //  Created by Tomisin Joseph on 19/10/2022.
 //
-// Z stack draws content from top to bottom, back to front
+// background(.red) means Color.red in a ZStack
+// semantic colours describe purpose
 
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            HStack {
-                Text("1")
-                Text("2")
-                Text("3")
-            }
-            HStack(spacing: 20) {
-                Text("4")
-                Text("5")
-                Text("6")
-            }
-            HStack {
-                Text("7")
-                Text("8")
-                Text("9")
-            }
+        ZStack {
+            Color(.red)
+                .frame(minWidth: 200, maxWidth: .infinity, maxHeight: 200)
+            Text("Your content")
         }
-
     }
 }
 
