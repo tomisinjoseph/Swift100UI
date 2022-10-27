@@ -4,14 +4,15 @@
 //
 //  Created by Tomisin Joseph on 19/10/2022.
 //
-// gradients - array of colours, size and direction, type of gradient
+// angular gradients - start and end array with the same colour for a smooth colour transition
 
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        RadialGradient(gradient: Gradient(colors: [.green, .blue]), center: .center, startRadius: 20, endRadius: 200)
+        AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
+            .ignoresSafeArea()
     }
 }
 
