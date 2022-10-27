@@ -4,26 +4,17 @@
 //
 //  Created by Tomisin Joseph on 19/10/2022.
 //
-// background modifier also accepts materials
-// foregroundStyle deals with vibrancy effect - text stands out regardless of the background
+// gradients - array of colours, size and direction, type of gradient
 
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                Color.blue
-                Color.red
-            }
-            
-            Text("BOLD TEXT")
-                .foregroundStyle(.secondary)
-                .padding(50)
-                .background(.ultraThinMaterial)
-        }
-        .ignoresSafeArea()
+        LinearGradient(gradient: Gradient(stops: [
+            .init(color: .green, location: 0.45),
+            .init(color: .orange, location: 0.85),
+        ]), startPoint: .top, endPoint: .bottom)
     }
 }
 
